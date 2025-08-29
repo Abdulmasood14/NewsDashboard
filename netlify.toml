@@ -1,11 +1,12 @@
 [build]
   publish = "."
-  command = "echo 'Static site deployment'"
 
 [build.environment]
   PYTHON_VERSION = "3.9"
 
-# API redirects to serverless functions
+[functions]
+  directory = ".netlify/functions"
+
 [[redirects]]
   from = "/api/available-dates"
   to = "/.netlify/functions/available-dates"
@@ -21,7 +22,6 @@
   to = "/.netlify/functions/company-details"
   status = 200
 
-# SPA fallback
 [[redirects]]
   from = "/*"
   to = "/index.html"
