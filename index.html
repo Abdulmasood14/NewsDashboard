@@ -703,16 +703,8 @@
 
             async loadAvailableDates() {
                 try {
-                    const response = await fetch('/.netlify/functions/available-dates');
-                    const data = await response.json();
-                    
-                    // Handle both old format and new debug format
-                    const dates = data.dates || data;
-                    
-                    // Log debug info if available
-                    if (data.debug) {
-                        console.log('Debug info:', data.debug);
-                    }
+                    const response = await fetch('/api/available-dates.json');
+                    const dates = await response.json();
                     
                     this.availableDates = dates.map(d => d.date);
                     
@@ -800,7 +792,7 @@
                 this.currentDate = date;
 
                 try {
-                    const response = await fetch(`/.netlify/functions/company-news/${date}`);
+                    const response = await fetch(`/api/company-news-${date}.json`);
                     
                     if (!response.ok) {
                         const errorText = await response.text();
@@ -888,7 +880,8 @@
                 this.showLoading();
 
                 try {
-                    const response = await fetch(`/.netlify/functions/company-details/${this.currentDate}/${encodeURIComponent(company.name)}`);
+                    const safeCompanyName = company.name.replace('/', '_').replace('\\', '_');
+                    const response = await fetch(`/api/company-details-${this.currentDate}-${safeCompanyName}.json`);
                     
                     if (!response.ok) {
                         throw new Error(`Failed to load company details: ${response.statusText}`);
