@@ -4,9 +4,9 @@
   "description": "Company News Dashboard with daily CSV processing",
   "main": "index.html",
   "scripts": {
-    "start": "python app.py",
-    "dev": "python app.py",
-    "build": "echo 'No build step required for static deployment'"
+    "build": "python build.py",
+    "start": "python build.py",
+    "dev": "python build.py"
   },
   "dependencies": {},
   "devDependencies": {},
@@ -18,7 +18,7 @@
     "news",
     "company",
     "csv",
-    "flask"
+    "static"
   ],
   "author": "Your Name",
   "license": "MIT"
