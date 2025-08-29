@@ -1,0 +1,25 @@
+{
+  "name": "company-news-dashboard",
+  "version": "1.0.0",
+  "description": "Company News Dashboard with daily CSV processing",
+  "main": "index.html",
+  "scripts": {
+    "start": "python app.py",
+    "dev": "python app.py",
+    "build": "echo 'No build step required for static deployment'"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "engines": {
+    "python": ">=3.8"
+  },
+  "keywords": [
+    "dashboard",
+    "news",
+    "company",
+    "csv",
+    "flask"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}

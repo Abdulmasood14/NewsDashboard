@@ -1,0 +1,31 @@
+[build]
+  publish = "."
+  command = "echo 'Static site deployment'"
+
+[build.environment]
+  PYTHON_VERSION = "3.9"
+
+[functions]
+  runtime = "python3.9"
+
+# API redirects to serverless functions
+[[redirects]]
+  from = "/api/available-dates"
+  to = "/.netlify/functions/available-dates"
+  status = 200
+
+[[redirects]]
+  from = "/api/company-news/:date"
+  to = "/.netlify/functions/company-news?date=:date"
+  status = 200
+
+[[redirects]]
+  from = "/api/company-details/:date/:company_name"
+  to = "/.netlify/functions/company-details?date=:date&company_name=:company_name"
+  status = 200
+
+# SPA fallback
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
