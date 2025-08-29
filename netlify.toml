@@ -5,9 +5,6 @@
 [build.environment]
   PYTHON_VERSION = "3.9"
 
-[functions]
-  runtime = "python3.9"
-
 # API redirects to serverless functions
 [[redirects]]
   from = "/api/available-dates"
