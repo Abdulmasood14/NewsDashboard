@@ -56,7 +56,7 @@ def process_links(links_str):
     
     return processed_links
 
-def main(event, context):
+def handler(event, context):
     try:
         # Extract parameters from path
         path = event.get('path', '')

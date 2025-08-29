@@ -56,7 +56,7 @@ def categorize_company_news(extracted_text):
     
     return "has_news"
 
-def main(event, context):
+def handler(event, context):
     try:
         # Extract date from path
         path = event.get('path', '')

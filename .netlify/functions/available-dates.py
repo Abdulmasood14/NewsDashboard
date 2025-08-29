@@ -16,10 +16,21 @@ def parse_date_from_filename(filename):
         pass
     return None
 
-def main(event, context):
+def handler(event, context):
     try:
+        # Debug: Check current working directory and files
+        current_dir = os.getcwd()
+        files_in_root = os.listdir('.')
+        
         # CSV files are in the project root's scrapped_output folder
         csv_folder = 'scrapped_output'
+        
+        # Debug response to see what's happening
+        debug_info = {
+            'current_directory': current_dir,
+            'files_in_root': files_in_root,
+            'csv_folder_exists': os.path.exists(csv_folder)
+        }
         
         if not os.path.exists(csv_folder):
             return {
@@ -28,7 +39,10 @@ def main(event, context):
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': '*'
                 },
-                'body': json.dumps([])
+                'body': json.dumps({
+                    'dates': [],
+                    'debug': debug_info
+                })
             }
         
         csv_files = glob.glob(os.path.join(csv_folder, '*.csv'))
@@ -53,7 +67,11 @@ def main(event, context):
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'
             },
-            'body': json.dumps(dates)
+            'body': json.dumps({
+                'dates': dates,
+                'debug': debug_info,
+                'csv_files_found': len(csv_files)
+            })
         }
     
     except Exception as e:
