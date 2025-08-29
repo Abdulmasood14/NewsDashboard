@@ -12,13 +12,13 @@
   status = 200
 
 [[redirects]]
-  from = "/api/company-news/:date"
-  to = "/.netlify/functions/company-news?date=:date"
+  from = "/api/company-news/*"
+  to = "/.netlify/functions/company-news"
   status = 200
 
 [[redirects]]
-  from = "/api/company-details/:date/:company_name"
-  to = "/.netlify/functions/company-details?date=:date&company_name=:company_name"
+  from = "/api/company-details/*/*"
+  to = "/.netlify/functions/company-details"
   status = 200
 
 # SPA fallback

@@ -16,7 +16,7 @@ def parse_date_from_filename(filename):
         pass
     return None
 
-def handler(event, context):
+def main(event, context):
     try:
         # CSV files are in the project root's scrapped_output folder
         csv_folder = 'scrapped_output'

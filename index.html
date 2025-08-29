@@ -703,7 +703,7 @@
 
             async loadAvailableDates() {
                 try {
-                    const response = await fetch('/api/available-dates');
+                    const response = await fetch('/.netlify/functions/available-dates');
                     const dates = await response.json();
                     
                     this.availableDates = dates.map(d => d.date);
@@ -792,7 +792,7 @@
                 this.currentDate = date;
 
                 try {
-                    const response = await fetch(`/api/company-news/${date}`);
+                    const response = await fetch(`/.netlify/functions/company-news/${date}`);
                     
                     if (!response.ok) {
                         const errorText = await response.text();
@@ -880,7 +880,7 @@
                 this.showLoading();
 
                 try {
-                    const response = await fetch(`/api/company-details/${this.currentDate}/${encodeURIComponent(company.name)}`);
+                    const response = await fetch(`/.netlify/functions/company-details/${this.currentDate}/${encodeURIComponent(company.name)}`);
                     
                     if (!response.ok) {
                         throw new Error(`Failed to load company details: ${response.statusText}`);

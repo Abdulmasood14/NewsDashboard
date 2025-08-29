@@ -56,11 +56,13 @@ def categorize_company_news(extracted_text):
     
     return "has_news"
 
-def handler(event, context):
+def main(event, context):
     try:
-        # Extract date from query parameters (Netlify redirects)
-        query_params = event.get('queryStringParameters', {}) or {}
-        date = query_params.get('date')
+        # Extract date from path
+        path = event.get('path', '')
+        # Path will be something like /api/company-news/2025-08-22
+        path_parts = path.strip('/').split('/')
+        date = path_parts[-1] if len(path_parts) >= 3 else None
         
         if not date:
             return {

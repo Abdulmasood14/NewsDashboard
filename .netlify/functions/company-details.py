@@ -56,12 +56,18 @@ def process_links(links_str):
     
     return processed_links
 
-def handler(event, context):
+def main(event, context):
     try:
-        # Extract parameters from query parameters (Netlify redirects)
-        query_params = event.get('queryStringParameters', {}) or {}
-        date = query_params.get('date')
-        company_name = query_params.get('company_name')
+        # Extract parameters from path
+        path = event.get('path', '')
+        # Path will be something like /api/company-details/2025-08-22/Company%20Name
+        path_parts = path.strip('/').split('/')
+        if len(path_parts) >= 4:
+            date = path_parts[-2]
+            company_name = unquote(path_parts[-1])
+        else:
+            date = None
+            company_name = None
         
         if not date or not company_name:
             return {
